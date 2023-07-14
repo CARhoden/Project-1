@@ -72,4 +72,3 @@ startButton.addEventListener('click', handleStartButtonClick);
 
 const postButton = document.getElementById('postButton');
 postButton.addEventListener('click', handlePostButtonClick);
-
