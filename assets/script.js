@@ -30,3 +30,36 @@ speechInput.value = speechText;
 
 const translationOutput = document.getElementById('translationOutput');
 translationOutput.textContent = 'Translating...';
+
+try {
+const transcription = await transcribeSpeech(speechText);
+const translatedText = transcription.split('').reverse().join('');
+
+    translationOutput.textContent = translatedText;
+    postInput.value = translatedText;
+    } catch (error) {
+    console.error('Error transcribing speech:', error);
+    translationOutput.textContent = 'Translation Error';
+    }
+};
+
+recognition.start();
+}
+
+// Function to handle the Post button click event
+function handlePostButtonClick() {
+const postInput = document.getElementById('postInput');
+const postText = postInput.value;
+
+// Perform the social media posting logic here
+// Replace the following example code with your actual posting logic
+
+console.log('Posting to social media:', postText);
+}
+
+// Attach event listeners to the buttons
+const startButton = document.getElementById('startButton');
+startButton.addEventListener('click', handleStartButtonClick);
+
+const postButton = document.getElementById('postButton');
+postButton.addEventListener('click', handlePostButtonClick);
