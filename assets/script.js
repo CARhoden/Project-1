@@ -44,7 +44,6 @@ const translatedText = transcription.split('').reverse().join('');
 };
 
 recognition.start();
-}
 
 // Function to handle the Post button click event
 function handlePostButtonClick() {
