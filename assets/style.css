@@ -1,0 +1,22 @@
+  html, body {
+    height: 100%;
+  }
+  body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .container {
+    max-width: 800px;
+    text-align: center;
+    padding: 20px;
+  }
+  button, textarea {
+    margin: 10px 0;
+  }
+  #speechContainer {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+  }
