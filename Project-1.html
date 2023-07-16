@@ -8,27 +8,38 @@
 </head>
 
 <body>
-  <h1>Speechify</h1>
+  <header>
+    <h1>Speechify</h1>
+  </header>
 
+<main>
   <button id="startButton">Start</button>
-
+<div class="container">
   <div id="speechContainer">
     <h2>Speech Input</h2>
+    <label for="speechInput">Speak here:</label>
     <textarea id="speechInput" rows="4" cols="50" placeholder="Speak here..."></textarea>
+    <button id="submitButton">Translate</button>
   </div>
-
+</div>
+  
   <div id="translationContainer">
     <h2>Translation</h2>
     <p id="translationOutput"></p>
   </div>
 
   <div id="postContainer">
+
     <textarea id="postInput" rows="4" cols="50" placeholder="Translated text..."></textarea>
   </div>
 
   <button id="postButton">Post to Social Media</button>
 
+</main>
+
   <script src="./assets/script.js"></script>
 </body>
-
 </html>
+
+ 
+
