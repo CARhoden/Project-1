@@ -1,41 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Speechify</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
   <link rel="stylesheet" type="text/css" href="./assets/style.css">
 </head>
+
 <body>
-  <header>
-    <h1>Speechify</h1>
-  </header>
 
-<main>
-  <button id="startButton">Start</button>
-<div class="container">
-  <div id="speechContainer">
-    <h2>Speech Input</h2>
-    <label for="speechInput">Speak here:</label>
-    <textarea id="speechInput" rows="4" cols="50" placeholder="Speak here..."></textarea>
-    <button id="submitButton">Translate</button>
-  </div>
-</div>
-  
-  <div id="translationContainer">
-    <h2>Translation</h2>
-    <p id="translationOutput"></p>
-  </div>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Speechify</h1>
 
-  <div id="postContainer">
-    <label for="postInput">Translated text</label>
-    <textarea id="postInput" rows="4" cols="50" placeholder="Translated text..."></textarea>
-  </div>
+      <button class="button is-primary" id="startButton">Start</button>
 
-  <button id="postButton">Post to Social Media</button>
-</main>
+      <div id="speechContainer" class="mt-4">
+        <h2 class="subtitle">Speech Input</h2>
+        <textarea class="textarea" id="speechInput" rows="4" cols="50" placeholder="Speak here..."></textarea>
+      </div>
+
+      <div id="translationContainer" class="mt-4">
+        <h2 class="subtitle">Translation</h2>
+        <p id="translationOutput"></p>
+      </div>
+
+      <div id="postContainer" class="mt-4">
+        <textarea class="textarea" id="postInput" rows="4" cols="50" placeholder="Translated text..."></textarea>
+      </div>
+
+      <button class="button is-primary mt-4" id="postButton">Post to Social Media</button>
+
+    </div>
+  </section>
 
   <script src="./assets/script.js"></script>
 </body>
+
 </html>
 
+
+
+
  
+
+
