@@ -11,7 +11,7 @@ async function transcribeSpeech(audio) {
         headers: {
             "Authorization": apiKey,
         },
-        body: formData,
+        body: formData, git
     });
 
     const data = await response.json();
