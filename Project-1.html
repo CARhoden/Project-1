@@ -32,8 +32,19 @@
         <textarea class="textarea" id="postInput" rows="4" cols="50" placeholder="Translated text..."></textarea>
       </div>
 
-      <button class="button is-primary mt-4" id="postButton">Post to Social Media</button>
+      <button class="button is-primary mt-4" id="shareButton">Share</button>
 
+      <div id="shareModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Share via:</h2>
+          <ul>
+            <li><a href="#" id="textLink">Text</a></li>
+            <li><a href="#" id="emailLink">Email</a></li>
+            <li><a href="#" id="socialMediaLink">Social Media</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
