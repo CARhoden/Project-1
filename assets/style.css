@@ -1,12 +1,18 @@
-/* 
-  .containers {
-    overflow: auto;
-  }
-  
-  #speechContainer {
-    float: left;
-    width: 50%;
-  }
-  #translationContainer {
-    float: right;
-    width: 50%; */
+body {
+  font-family: Arial, sans-serif;
+  background:#f2f2f2
+}
+
+.container {
+  max-width:800px;
+  margin: 0 auto;
+}
+
+header {
+  background: #333;
+  color: teal;
+  padding: 25px;
+  text-align: center;
+  font-size: 75px;
+  margin-bottom: 20px;
+}
