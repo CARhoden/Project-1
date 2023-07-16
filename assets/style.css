@@ -1,22 +1,13 @@
-  html, body {
-    height: 100%;
+
+  .containers {
+    overflow: auto;
   }
-  body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .container {
-    max-width: 800px;
-    text-align: center;
-    padding: 20px;
-  }
-  button, textarea {
-    margin: 10px 0;
-  }
+  
   #speechContainer {
-    display: flex;
-    flex-direction: column;
-    align-items:center;
+    float: left;
+    width: 50%;
+  }
+  #translationContainer {
+    float: right;
+    width: 50%;
   }
