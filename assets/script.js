@@ -101,3 +101,7 @@ const modal = document.querySelector(".modal");
 shareButton.addEventListener("click", () => {
   modal.classList.add("is-active");
 });
+
+modalBg.addEventListener("click", () => {
+  modal.classList.remove("is-active");
+});
