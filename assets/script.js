@@ -115,3 +115,15 @@ stopButton.addEventListener("click", stopRecording);
 
 
 
+// Modal
+// const shareButton = ducument.querySelector("#share");
+const modalBg = document.querySelector(".modal-background");
+const modal = document.querySelector(".modal");
+
+shareButton.addEventListener("click", () => {
+    modal.classList.add("is-active");
+});
+
+modalBg.addEventListener("click", () => {
+    modal.classList.remove("is-active");
+});
