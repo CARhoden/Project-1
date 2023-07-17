@@ -1,97 +1,117 @@
 //api key
 const apiKey = "c8111344442f40f6b55f8188a14ec8ec";
-const apiKey2 = "AIzaSyBtibM-CRu_1WCLUUdmOkndv7BZbV3rplE";
+const apiKey4 = "Bearer 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"
+
+let transcriptionResult = "Test"
+
+
 
 //function for speech rec request
 async function transcribeSpeech(audio) {
-  const formData = new FormData();
-  formData.append("audio", audio);
+    const formData = new FormData();
+    formData.append("file", audio, "audio.webm");
+    formData.append("model", "whisper-1");
+    console.log(formData, "formData")
 
-  const response = await fetch("https://api.assemblyai.com/v2/transcript", {
-    method: "POST",
-    headers: {
-      Authorization: apiKey,
-    },
-    body: formData,
-  });
-
-  const data = await response.json();
-  return data.transcript_text;
+    const response = await fetch("https://api.openai.com/v1/audio/transcriptions", {
+        method: "POST",
+        headers: {
+            Authorization: apiKey4,
+        },
+        body: formData,
+    });
+    console.log(response)
+    const data = await response.json();
+    console.log(data)
+    speechInput.value = data.text;
+    translatedContent(data.text)
+    return data.text;
 }
 
-// speech recognition
-const recognition = new webkitSpeechRecognition();
-recognition.continuous = true;
 
-recognition.onresult = async function (event) {
-  const speechText = event.results[event.results.length - 1][0].transcript;
-  speechInput.value = speechText;
 
-  const translationOutput = document.getElementById("translationOutput");
-  translationOutput.textContent = "Translating...";
+const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
-  try {
-    const transcription = await transcribeSpeech(speechText);
-    const translatedText = transcription.split("").reverse().join("");
+async function translatedContent(inputText) {
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "DeepL-Auth-Key c4502c90-c5a6-96ed-440a-4d8ecd2026a5:fx");
+    myHeaders.append("Content-Type", "application/json");
+    console.log(inputText)
+    var raw = JSON.stringify({
+        "text": [
+            inputText
+        ],
+        "target_lang": "DE"
+    });
 
-    translationOutput.textContent = translatedText;
-    postInput.value = translatedText;
-  } catch (error) {
-    console.error("Error transcribing speech:", error);
-    translationOutput.textContent = "Translation Error";
-  }
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow',
+        mode: 'cors'
+    };
+
+    fetch(proxyUrl + "https://api-free.deepl.com/v2/translate", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result)
+            postInput.value = result.translations[0].text;
+        })
+        .catch(error => console.log('error', error));
+
+}
+
+
+let stream;
+let mediaRecorder;
+let chunks = [];
+
+const startRecording = async () => {
+    console.log('start')
+    try {
+        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+
+        mediaRecorder.addEventListener('dataavailable', (e) => {
+            chunks.push(e.data);
+        });
+
+        mediaRecorder.addEventListener('stop', () => {
+            const audioBlob = new Blob(chunks, { type: 'audio/webm' });
+            const speechText = transcribeSpeech(audioBlob)
+
+            chunks = [];
+        });
+
+        mediaRecorder.start();
+    } catch (err) {
+        console.error('Error accessing microphone:', err);
+    }
 };
 
-// Function to handle the Post button click event
-function handleShareButtonClick() {
-  const postInput = document.getElementById("postInput");
-  const postText = postInput.value;
-
-  console.log("Posting to social media:", postText);
-}
-
-function handleStartButtonClick() {
-  const startButton = document.getElementById("startButton");
-  startButton.disabled = true;
-
-  const speechInput = document.getElementById("speechInput");
-  speechInput.disabled = true;
-
-  const postInput = document.getElementById("postInput");
-  postInput.disabled = true;
-
-  recognition.start();
-}
-
-function handleStopButtonClick() {
-  recognition.stop();
-}
+const stopRecording = () => {
+    console.log(stop)
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+        stream.getTracks().forEach(track => track.stop());
+    }
+};
 
 // Attach event listeners to the buttons
 const startButton = document.getElementById("startButton");
-startButton.addEventListener("click", handleStartButtonClick);
+startButton.addEventListener("click", startRecording);
+
 
 const stopButton = document.getElementById("stopButton");
-stopButton.addEventListener("click", handleStopButtonClick);
+stopButton.addEventListener("click", stopRecording);
 
-const shareButton = document.getElementById("shareButton");
-shareButton.addEventListener("click", handleShareButtonClick);
 
-// async function translateText() {
-//     const response = await fetch('https://translation.googleapis.com/language/translate/v2?key=AIzaSyBtibM-CRu_1WCLUUdmOkndv7BZbV3rplE', {
-//         method: "POST",
-//         headers: {
 
-//         },
-//         body: {
-//             target: "de",
-//             q: "hello world",
-//         }
-//     });
-//     const data = await response.json()
-//     return data;
-// }
-// console.log(data)
+
+
+
+
 
 // Modal
 // const shareButton = ducument.querySelector("#share");
@@ -99,9 +119,9 @@ const modalBg = document.querySelector(".modal-background");
 const modal = document.querySelector(".modal");
 
 shareButton.addEventListener("click", () => {
-  modal.classList.add("is-active");
+    modal.classList.add("is-active");
 });
 
 modalBg.addEventListener("click", () => {
-  modal.classList.remove("is-active");
+    modal.classList.remove("is-active");
 });
