@@ -42,15 +42,10 @@ recognition.onresult = async function (event) {
     }
 };
 
-recognition.start();
-
 // Function to handle the Post button click event
 function handlePostButtonClick() {
     const postInput = document.getElementById("postInput");
     const postText = postInput.value;
-
-    // Perform the social media posting logic here
-    // Replace the following example code with your actual posting logic
 
     console.log("Posting to social media:", postText);
 }
@@ -68,25 +63,33 @@ function handleStartButtonClick() {
     recognition.start();
 }
 
+function handleStopButtonClick() {
+    recognition.stop();
+}
+
 // Attach event listeners to the buttons
 const startButton = document.getElementById("startButton");
-startButton.addEventListener("click", handlePostButtonClick);
+startButton.addEventListener("click", handleStartButtonClick);
+
+const stopButton = document.getElementById("stopButton");
+stopButton.addEventListener("click", handleStopButtonClick);
 
 const postButton = document.getElementById("postButton");
 postButton.addEventListener("click", handlePostButtonClick);
 
-async function translateText() {
-    const response = await fetch('https://translation.googleapis.com/language/translate/v2?key=AIzaSyBtibM-CRu_1WCLUUdmOkndv7BZbV3rplE', {
-        method: "POST",
-        headers: {
+// async function translateText() {
+//     const response = await fetch('https://translation.googleapis.com/language/translate/v2?key=AIzaSyBtibM-CRu_1WCLUUdmOkndv7BZbV3rplE', {
+//         method: "POST",
+//         headers: {
 
-        },
-        body: {
-            target: "de",
-            q: "hello world",
-        }
-    });
-    const data = await response.json()
-    return data;
-}
-console.log(data)
+//         },
+//         body: {
+//             target: "de",
+//             q: "hello world",
+//         }
+//     });
+//     const data = await response.json()
+//     return data;
+// }
+// console.log(data)
+
