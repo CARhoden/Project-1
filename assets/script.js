@@ -1,8 +1,6 @@
 //api key
 const apiKey = "c8111344442f40f6b55f8188a14ec8ec";
-const apiKey2 = "AIzaSyBtibM-CRu_1WCLUUdmOkndv7BZbV3rplE";
-const apiKey3 = "c4502c90-c5a6-96ed-440a-4d8ecd2026a5:fx"
-const apiKey4 = "Bearer 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"
+const apiKey4 = "Bearer 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"
 
 let transcriptionResult = "Test"
 
@@ -55,7 +53,7 @@ async function translatedContent(inputText) {
     };
 
     fetch(proxyUrl + "https://api-free.deepl.com/v2/translate", requestOptions)
-        .then(response => response.text())
+        .then(response => response.json())
         .then(result => {
             console.log(result)
             postInput.value = result.translations[0].text;
