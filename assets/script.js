@@ -1,6 +1,8 @@
 //api key
 const apiKey = "c8111344442f40f6b55f8188a14ec8ec";
+//encoded api key
 const apiKey4 = "QmVhcmVyIHNrLWZxUzl1czgzcVJLVHFHN0w4RHJyVDNCbGJrRkpTeVF6NEZWMExSMHhjOUJMRno3Sg==";
+//decodes api key 
 var decodedKey = atob(apiKey4);
 
 let transcriptionResult = "Test";
@@ -53,6 +55,7 @@ async function translatedContent(inputText) {
     mode: "cors",
   };
 
+//calls deepL api to request translation
   fetch(proxyUrl + "https://api-free.deepl.com/v2/translate", requestOptions)
     .then((response) => response.json())
     .then((result) => {
