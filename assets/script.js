@@ -11,27 +11,27 @@ let transcriptionResult = "Test";
 //function for speech rec request
 async function transcribeSpeech(audio) {
 
-  const formData = new FormData();
-  formData.append("file", audio, "audio.webm");
-  formData.append("model", "whisper-1");
-  console.log(formData, "formData");
+    const formData = new FormData();
+    formData.append("file", audio, "audio.webm");
+    formData.append("model", "whisper-1");
+    console.log(formData, "formData");
 
-  const response = await fetch(
-    "https://api.openai.com/v1/audio/transcriptions",
-    {
-      method: "POST",
-      headers: {
-        Authorization: decodedKey,
-      },
-      body: formData,
-    }
-  );
-  console.log(response);
-  const data = await response.json();
-  console.log(data);
-  speechInput.value = data.text;
-  translatedContent(data.text);
-  return data.text;
+    const response = await fetch(
+        "https://api.openai.com/v1/audio/transcriptions",
+        {
+            method: "POST",
+            headers: {
+                Authorization: decodedKey,
+            },
+            body: formData,
+        }
+    );
+    console.log(response);
+    const data = await response.json();
+    console.log(data);
+    speechInput.value = data.text;
+    translatedContent(data.text);
+    return data.text;
 }
 
 const proxyUrl = "https://cors-anywhere.herokuapp.com/";
@@ -46,39 +46,43 @@ selectTag.forEach(tag => {
 });
 
 const as = document.getElementById('selectLang');
-var value = as.options[as.selectedIndex].value;
-console.log(value)
+as.onchange = (ev) => {
+    console.log(as.value)
+}
+var value = as.value
+// var value = as.options[as.selectedIndex].value;
+// console.log(value)
 
 async function translatedContent(inputText) {
 
-  var myHeaders = new Headers();
-  myHeaders.append(
-    "Authorization",
-    "DeepL-Auth-Key c4502c90-c5a6-96ed-440a-4d8ecd2026a5:fx"
-  );
-  myHeaders.append("Content-Type", "application/json");
-  console.log(inputText);
-  var raw = JSON.stringify({
-    text: [inputText],
-    target_lang: "DE",
-  });
+    var myHeaders = new Headers();
+    myHeaders.append(
+        "Authorization",
+        "DeepL-Auth-Key c4502c90-c5a6-96ed-440a-4d8ecd2026a5:fx"
+    );
+    myHeaders.append("Content-Type", "application/json");
+    console.log(inputText);
+    var raw = JSON.stringify({
+        text: [inputText],
+        target_lang: as.value,
+    });
 
-  var requestOptions = {
-    method: "POST",
-    headers: myHeaders,
-    body: raw,
-    redirect: "follow",
-    mode: "cors",
-  };
+    var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+        mode: "cors",
+    };
 
-//calls deepL api to request translation
-  fetch(proxyUrl + "https://api-free.deepl.com/v2/translate", requestOptions)
-    .then((response) => response.json())
-    .then((result) => {
-      console.log(result);
-      postInput.value = result.translations[0].text;
-    })
-    .catch((error) => console.log("error", error));
+    //calls deepL api to request translation
+    fetch(proxyUrl + "https://api-free.deepl.com/v2/translate", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+            console.log(result);
+            postInput.value = result.translations[0].text;
+        })
+        .catch((error) => console.log("error", error));
 }
 
 let stream;
