@@ -14,19 +14,22 @@
 
   <section class="section">
     <div class="container">
-      <header><class="title">Speechify</header>
+      <header>
+        <class="title">Speechify
+      </header>
 
       <button class="button is-primary" id="startButton">Start</button>
       <button class="button is-primary" id="stopButton">Stop</button>
 
       <div id="speechContainer" class="mt-4">
         <h2 class="subtitle">Speech Input</h2>
-        <textarea class="textarea" id="speechInput" rows="4" cols="50" placeholder="Speak here..."></textarea>
+        <textarea class="textarea" id="speechInput" rows="4" cols="50"
+          placeholder="Press the start button then begin speaking "></textarea>
       </div>
 
       <div id="translationContainer" class="mt-4">
         <h2 class="subtitle">Translation</h2>
-        <div class="dropdown">
+        <!-- <div class="dropdown">
           <div class="dropdown-trigger">
             <button class="button is-primary" aria-haspopup="true" aria-controls="dropdown-menu">
               <span>Languages</span>
@@ -37,9 +40,10 @@
           </div>
           <div class="dropdown-menu" role="menu">
             <div class="dropdown-content">
-              <a href="#" class="dropdown-item">
-                French
-              </a>
+              <option class="dropdown-item">
+                french
+              </option>
+              </select>
               <a class="dropdown-item">
                 German
               </a>
@@ -54,39 +58,35 @@
           </div>
         </div>
         <p id="translationOutput"></p>
-      </div>
+      </div> -->
+        <select class="dropdown-item" id="selectLang" style="color:white">
+        </select>
 
-      <div id="postContainer" class="mt-4">
-        <textarea class="textarea" id="postInput" rows="4" cols="50" placeholder="Translated text..."></textarea>
-      </div>
+        <div id="postContainer" class="mt-4">
+          <textarea class="textarea" id="postInput" rows="4" cols="50" placeholder="Translated text..."></textarea>
+        </div>
 
-      <button class="button is-primary mt-4" id="shareButton">Share</button>
+        <button class="button is-primary mt-4" id="shareButton">Share</button>
       </div>
     </div>
   </section>
 
-<div class="modal">
-  <div class="modal-background"></div>
-  <div class="modal-content has-background-white py-5 px-5">
-    <h3 class="title mb-6">Share</h3>
-    <ul>
-      <li>share via facebook!</li>
-      <li>share via email</li>
-      <li>share via blah blah blah</li>
-    </ul>
+  <div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content has-background-white py-5 px-5">
+      <h3 class="title mb-6">Share</h3>
+      <ul>
+        <li>share via facebook!</li>
+        <li>share via email</li>
+        <li>share via blah blah blah</li>
+      </ul>
+    </div>
+
   </div>
 
-</div>
 
-
+  <script src="./assets/country.js"></script>
   <script src="./assets/script.js"></script>
 </body>
 
 </html>
-
-
-
-
- 
-
-

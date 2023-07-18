@@ -1,4 +1,5 @@
 //api key
+
 const apiKey = "c8111344442f40f6b55f8188a14ec8ec";
 //encoded api key
 const apiKey4 = "QmVhcmVyIHNrLWZxUzl1czgzcVJLVHFHN0w4RHJyVDNCbGJrRkpTeVF6NEZWMExSMHhjOUJMRno3Sg==";
@@ -9,6 +10,7 @@ let transcriptionResult = "Test";
 
 //function for speech rec request
 async function transcribeSpeech(audio) {
+
   const formData = new FormData();
   formData.append("file", audio, "audio.webm");
   formData.append("model", "whisper-1");
@@ -34,7 +36,21 @@ async function transcribeSpeech(audio) {
 
 const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 
+const selectTag = document.querySelectorAll('select');
+
+selectTag.forEach(tag => {
+    for (const country_code in countries) {
+        let option = `<option value="${country_code}" style="color:white">${countries[country_code]}</option>`
+        tag.insertAdjacentHTML("beforeend", option);
+    }
+});
+
+const as = document.getElementById('selectLang');
+var value = as.options[as.selectedIndex].value;
+console.log(value)
+
 async function translatedContent(inputText) {
+
   var myHeaders = new Headers();
   myHeaders.append(
     "Authorization",
@@ -70,34 +86,34 @@ let mediaRecorder;
 let chunks = [];
 
 const startRecording = async () => {
-  console.log("start");
-  try {
-    stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    mediaRecorder = new MediaRecorder(stream);
+    console.log("start");
+    try {
+        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
 
-    mediaRecorder.addEventListener("dataavailable", (e) => {
-      chunks.push(e.data);
-    });
+        mediaRecorder.addEventListener("dataavailable", (e) => {
+            chunks.push(e.data);
+        });
 
-    mediaRecorder.addEventListener("stop", () => {
-      const audioBlob = new Blob(chunks, { type: "audio/webm" });
-      const speechText = transcribeSpeech(audioBlob);
+        mediaRecorder.addEventListener("stop", () => {
+            const audioBlob = new Blob(chunks, { type: "audio/webm" });
+            const speechText = transcribeSpeech(audioBlob);
 
-      chunks = [];
-    });
+            chunks = [];
+        });
 
-    mediaRecorder.start();
-  } catch (err) {
-    console.error("Error accessing microphone:", err);
-  }
+        mediaRecorder.start();
+    } catch (err) {
+        console.error("Error accessing microphone:", err);
+    }
 };
 
 const stopRecording = () => {
-  console.log(stop);
-  if (mediaRecorder && mediaRecorder.state !== "inactive") {
-    mediaRecorder.stop();
-    stream.getTracks().forEach((track) => track.stop());
-  }
+    console.log(stop);
+    if (mediaRecorder && mediaRecorder.state !== "inactive") {
+        mediaRecorder.stop();
+        stream.getTracks().forEach((track) => track.stop());
+    }
 };
 
 // Attach event listeners to the buttons
@@ -113,26 +129,26 @@ const modalBg = document.querySelector(".modal-background");
 const modal = document.querySelector(".modal");
 
 shareButton.addEventListener("click", () => {
-  modal.classList.add("is-active");
+    modal.classList.add("is-active");
 });
 
 modalBg.addEventListener("click", () => {
-  modal.classList.remove("is-active");
+    modal.classList.remove("is-active");
 });
 
 const dropdownTrigger = document.querySelector(".dropdown-trigger button");
 
 dropdownTrigger.addEventListener("click", function (event) {
-  console.log("click");
-  event.stopPropagation();
-  const dropdownMenu = document.querySelector(".dropdown-menu");
-  dropdownMenu.classList.toggle("is-active");
+    console.log("click");
+    event.stopPropagation();
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+    dropdownMenu.classList.toggle("is-active");
 });
 
 window.addEventListener("click", function (event) {
-  const dropdownMenu = document.querySelector(".dropdown-menu");
-  console.log("click");
-  if (!dropdownMenu.contains(event.target)) {
-    dropdownMenu.classList.remove("is-active");
-  }
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+    console.log("click");
+    if (!dropdownMenu.contains(event.target)) {
+        dropdownMenu.classList.remove("is-active");
+    }
 });
