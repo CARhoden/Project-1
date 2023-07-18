@@ -13,12 +13,13 @@ Just a website so a web browser is all your need. I would recommend Google Chrom
 
 ## Deployment
 
-This website is deployed on github. So by this link: https://carhoden.github.io/Planner/
+This website is deployed on github. So by this link: https://carhoden.github.io/Project-1/
 you can access to it.
 
 ## Credits
 
-TBD
+Javascript: Catelin and Connor
+HTML & CSS: Brennan and David
 
 ## Usage
 
