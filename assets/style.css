@@ -16,3 +16,13 @@ header {
   font-size: 75px;
   margin-bottom: 20px;
 }
+
+.dropdown-menu {
+  padding: 10px;
+  display: none;
+  z-index: 1;
+}
+
+.dropdown-menu.is-active {
+  display: block;
+}
