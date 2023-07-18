@@ -1,6 +1,7 @@
 //api key
 const apiKey = "c8111344442f40f6b55f8188a14ec8ec";
-const apiKey4 = "Bearer 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";
+const apiKey4 = "QmVhcmVyIHNrLWZxUzl1czgzcVJLVHFHN0w4RHJyVDNCbGJrRkpTeVF6NEZWMExSMHhjOUJMRno3Sg==";
+var decodedKey = atob(apiKey4);
 
 let transcriptionResult = "Test";
 
@@ -16,7 +17,7 @@ async function transcribeSpeech(audio) {
     {
       method: "POST",
       headers: {
-        Authorization: apiKey4,
+        Authorization: decodedKey,
       },
       body: formData,
     }
