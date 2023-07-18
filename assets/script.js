@@ -34,7 +34,7 @@ async function transcribeSpeech(audio) {
     return data.text;
 }
 
-
+const proxyUrl = "https://cors-proxy.fringe.zone/";
 
 const selectTag = document.querySelectorAll('select');
 
@@ -59,6 +59,7 @@ async function translatedContent(inputText) {
         "DeepL-Auth-Key c4502c90-c5a6-96ed-440a-4d8ecd2026a5:fx"
     );
     myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("origin", "localhost");
     console.log(inputText);
     var raw = JSON.stringify({
         text: [inputText],
@@ -70,11 +71,10 @@ async function translatedContent(inputText) {
         headers: myHeaders,
         body: raw,
         redirect: "follow",
-        mode: "cors",
     };
 
     //calls deepL api to request translation
-    fetch("https://api-free.deepl.com/v2/translate", requestOptions)
+    fetch(proxyUrl + "https://api-free.deepl.com/v2/translate", requestOptions)
         .then((response) => response.json())
         .then((result) => {
             console.log(result);
