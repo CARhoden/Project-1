@@ -34,7 +34,7 @@ async function transcribeSpeech(audio) {
     return data.text;
 }
 
-const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+
 
 const selectTag = document.querySelectorAll('select');
 
@@ -74,7 +74,7 @@ async function translatedContent(inputText) {
     };
 
     //calls deepL api to request translation
-    fetch(proxyUrl + "https://api-free.deepl.com/v2/translate", requestOptions)
+    fetch("https://api-free.deepl.com/v2/translate", requestOptions)
         .then((response) => response.json())
         .then((result) => {
             console.log(result);
