@@ -45,13 +45,11 @@ selectTag.forEach(tag => {
     }
 });
 
-const as = document.getElementById('selectLang');
-as.onchange = (ev) => {
-    console.log(as.value)
+const lang = document.getElementById('selectLang');
+lang.onchange = (ev) => {
+    console.log(lang.value)
 }
-var value = as.value
-// var value = as.options[as.selectedIndex].value;
-// console.log(value)
+var value = lang.value
 
 async function translatedContent(inputText) {
 
@@ -64,7 +62,7 @@ async function translatedContent(inputText) {
     console.log(inputText);
     var raw = JSON.stringify({
         text: [inputText],
-        target_lang: as.value,
+        target_lang: lang.value,
     });
 
     var requestOptions = {
